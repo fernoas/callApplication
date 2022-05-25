@@ -1,0 +1,35 @@
+<template>
+    <lightning-card>
+        <div class="slds-m-horizontal_medium">
+            <p><b>Cliente: </b></p>
+            
+        </div>        
+        <br/>
+        <div class="slds-m-horizontal_medium">
+            <lightning-input
+                label="Assunto do chamado"
+                name="caseName"
+                type="text"
+                onchange={handleName}></lightning-input>
+        </div>
+        <div class="slds-m-horizontal_medium">
+            <lightning-input
+                label="Data da ocorrência"
+                name="caseDate"
+                type="date"
+                onchange={handleDate}></lightning-input>
+        </div>
+        <div class="slds-m-horizontal_medium">
+            <lightning-textarea name="input1"></lightning-textarea>
+        </div>
+        <br/>
+        <div style="text-align: center">
+            <lightning-button
+            variant="brand"
+            label="Salvar"
+            onclick={openModal}></lightning-button>
+        </div>
+        
+    </lightning-card>
+    
+</template>
