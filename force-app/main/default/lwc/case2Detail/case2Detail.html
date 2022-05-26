@@ -1,35 +1,40 @@
 <template>
     <lightning-card>
         <div class="slds-m-horizontal_medium">
-            <p><b>Cliente: </b></p>
-            
-        </div>        
-        <br/>
-        <div class="slds-m-horizontal_medium">
-            <lightning-input
-                label="Assunto do chamado"
-                name="caseName"
-                type="text"
-                onchange={handleName}></lightning-input>
-        </div>
-        <div class="slds-m-horizontal_medium">
-            <lightning-input
-                label="Data da ocorrência"
-                name="caseDate"
-                type="date"
-                onchange={handleDate}></lightning-input>
-        </div>
-        <div class="slds-m-horizontal_medium">
-            <lightning-textarea name="input1"></lightning-textarea>
-        </div>
-        <br/>
-        <div style="text-align: center">
-            <lightning-button
-            variant="brand"
-            label="Salvar"
-            onclick={openModal}></lightning-button>
-        </div>
+            <template if:true={showAccountAlert}>
+                <p style="color: red;">Por favor, selecione um cliente.</p>
+            </template>
+            <p>Cliente: {accountName}</p>
         
+            <lightning-input
+                type="text"
+                name="caseName"
+                label="Assunto do chamado"
+                onchange={handleName}></lightning-input>
+        
+            <lightning-input
+                type="date"
+                name="caseDate"
+                label="Data da ocorrência"
+                onchange={handleDate}></lightning-input>
+        
+             <lightning-textarea 
+                type="text"
+                name="description"
+                label="Descrição"
+                max-length="32000"
+                onchange={handleDescription}></lightning-textarea>
+        
+            <template if:true={isEnabledSave}>
+                <div style="text-align: center">
+                    <br/>
+                    <lightning-button
+                        variant="brand"
+                        label="Salvar"
+                        onclick={submitCase}></lightning-button>
+                </div>
+            </template>
+        </div>
     </lightning-card>
-    
+
 </template>
