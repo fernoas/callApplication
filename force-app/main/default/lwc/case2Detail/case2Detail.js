@@ -10,10 +10,11 @@ export default class Case2Detail extends NavigationMixin(LightningElement) {
     case = null;
     accountName = null;
     accountId = null;
-    caseName = null;
+    subject = null;
     caseDate = null;
     description = null;
     showAccountAlert = true;
+    
 
 
     connectedCallback(){
@@ -30,7 +31,7 @@ export default class Case2Detail extends NavigationMixin(LightningElement) {
     }
 
     handleName(event){
-        this.caseName = event.currentTarget.value;
+        this.subject = event.currentTarget.value;
     }
 
     handleDate(event){
@@ -43,31 +44,28 @@ export default class Case2Detail extends NavigationMixin(LightningElement) {
     }
 
     get isEnabledSave(){
-        return this.accountName != "" && this.accountName != null && this.caseName != "" && this.caseName != null && this.caseDate != null && this.description != null && this.description != "";
+        return this.accountName != "" && this.accountName != null && this.subject != null && this.caseDate != null && this.description != null && this.description != "";
     }
 
     submitCase(){
-        if (this.accountId === null){
-            this.showAccountAlert = true;
-        }else{
-            createCase({case : JSON.stringify(this.case), subject : this.caseName, description : this.description, caseDate : this.caseDate, accountId : this.accountId}).then( (response) => {
-                console.log('response case',response )
-                this[NavigationMixin.Navigate]({
-                    type : 'standard__recordPage',
-                    attributes : {
-                        recordId : response.Id,
-                        actionName : 'view'
-                    }
+
+        createCase({case : JSON.stringify(this.case), subject : this.subject, description : this.description, caseDate : this.caseDate, accountId : this.accountId}).then( (response) => {
+        console.log('response case',response )
+            this[NavigationMixin.Navigate]({
+                type : 'standard__recordPage',
+                attributes : {
+                recordId : response.Id,
+                actionName : 'view'
+                }
                 });
 
             } ).catch( (error) => {
                 console.log('erro ao criar caso', error);
             } );
-        }       
+    }       
     
-    }
-
-
-
-
 }
+
+
+
+

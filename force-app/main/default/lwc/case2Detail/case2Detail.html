@@ -2,13 +2,15 @@
     <lightning-card>
         <div class="slds-m-horizontal_medium">
             <template if:true={showAccountAlert}>
-                <p style="color: red;">Por favor, selecione um cliente.</p>
+                <p>Cliente: <b style="color: red;">Selecione um cliente.</b></p>
             </template>
-            <p>Cliente: {accountName}</p>
-        
+            <template if:false={showAccountAlert}>
+                <p>Cliente: {accountName}</p>
+            </template>
+            <br/>
             <lightning-input
                 type="text"
-                name="caseName"
+                name="subject"
                 label="Assunto do chamado"
                 onchange={handleName}></lightning-input>
         
