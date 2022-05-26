@@ -13,7 +13,7 @@ export default class Case2Detail extends NavigationMixin(LightningElement) {
     caseName = null;
     caseDate = null;
     description = null;
-    showAccountAlert = false;
+    showAccountAlert = true;
 
 
     connectedCallback(){

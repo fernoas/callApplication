@@ -24,7 +24,6 @@ export default class AccountList extends LightningElement {
     getAccountJs(){
         getAccounts({filter : this.filterName, pageNumber : this.page}).then( (response) => {
             this.accounts = response;
-            console.log('this.accounts',this.accounts);
         }).catch( (error) => {
             console.log('ERRO AO BUSCAR CONTA',error);
         })
